@@ -21,6 +21,12 @@ public class Main {
         // Set up the repeated task that will update the subject states (seconds)
         TimerTask repeatedTask = new TimerTask() {
             public void run() {
+
+                // Refresh the image component to be able to display shapes without trace
+                Graphics2D g2 = (Graphics2D) FrameSingleton.getInstance().getImage().getGraphics();
+                g2.setColor(Color.WHITE);
+                g2.fillRect(0, 0, FrameSingleton.getInstance().getWidth(), FrameSingleton.getInstance().getHeight());
+
                 Graphics2D g = frame.getGraphics();
                 for(Square s : squares){
                     s.draw(g);
