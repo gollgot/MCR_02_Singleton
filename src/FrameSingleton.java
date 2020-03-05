@@ -4,10 +4,11 @@ import java.awt.*;
 public class FrameSingleton implements Displayer{
 
     private static FrameSingleton instance;
-    private final int WIDTH = 400;
-    private final int HEIGHT = 400;
-    private JPanel panel = new JPanel();
-    JFrame frame = new JFrame();
+    private final int WIDTH = 500;
+    private final int HEIGHT = 500;
+    private JFrame frame = new JFrame();
+    private FramePanel panel = new FramePanel();
+    private Image image;
 
     // Private constructor
     private FrameSingleton(){
@@ -15,13 +16,10 @@ public class FrameSingleton implements Displayer{
         frame.setSize(WIDTH, HEIGHT);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        frame.setContentPane(panel);
-
+        frame.setContentPane(this.panel);
         frame.setVisible(true);
 
-        Square s = new Square(10,10);
-
+        this.image = panel.createImage(getWidth(),getHeight());
     }
 
     public static FrameSingleton getInstance(){
@@ -32,14 +30,18 @@ public class FrameSingleton implements Displayer{
         return instance;
     }
 
+    public Image getImage() {
+        return image;
+    }
+
     @Override
     public int getWidth() {
-        return 0;
+        return WIDTH;
     }
 
     @Override
     public int getHeight() {
-        return 0;
+        return HEIGHT;
     }
 
     @Override
@@ -50,7 +52,6 @@ public class FrameSingleton implements Displayer{
     @Override
     public void repaint() {
         panel.repaint();
-        frame.repaint();
     }
 
     @Override
