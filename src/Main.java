@@ -9,11 +9,24 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<Square> squares = new ArrayList<>();
-        squares.add(new Square(10,10));
-        squares.add(new Square(20,20));
-        squares.add(new Square(30,30));
+        final int SQUARE_WIDTH = 10;
+        final int SQUARE_HEIGHT = 10;
+        final Color SQUARE_COLOR = Color.BLUE;
 
+        final int CIRCLE_WIDTH = 10;
+        final int CIRCLE_HEIGHT = 10;
+        final Color CIRCLE_COLOR = Color.RED;
+
+        // Create all squares
+        ArrayList<Shape> shapes = new ArrayList<>();
+        shapes.add(new Square(10,30, SQUARE_WIDTH, SQUARE_HEIGHT, SQUARE_COLOR));
+        shapes.add(new Square(20,10, SQUARE_WIDTH, SQUARE_HEIGHT, SQUARE_COLOR));
+        shapes.add(new Square(40,20, SQUARE_WIDTH, SQUARE_HEIGHT, SQUARE_COLOR));
+        shapes.add(new Circle(100,200, CIRCLE_WIDTH, CIRCLE_HEIGHT, CIRCLE_COLOR));
+        shapes.add(new Circle(90,180, CIRCLE_WIDTH, CIRCLE_HEIGHT, CIRCLE_COLOR));
+        shapes.add(new Circle(80,160, CIRCLE_WIDTH, CIRCLE_HEIGHT, CIRCLE_COLOR));
+
+        // Fetch the frameSingleton
         FrameSingleton frame = FrameSingleton.getInstance();
 
 
@@ -23,14 +36,18 @@ public class Main {
             public void run() {
 
                 // Refresh the image component to be able to display shapes without trace
-                Graphics2D g2 = (Graphics2D) FrameSingleton.getInstance().getImage().getGraphics();
-                g2.setColor(Color.WHITE);
-                g2.fillRect(0, 0, FrameSingleton.getInstance().getWidth(), FrameSingleton.getInstance().getHeight());
+                Graphics2D g2d = FrameSingleton.getInstance().getGraphics();
+                g2d.setColor(Color.WHITE);
+                g2d.fillRect(0, 0, FrameSingleton.getInstance().getWidth(), FrameSingleton.getInstance().getHeight());
 
-                Graphics2D g = frame.getGraphics();
-                for(Square s : squares){
-                    s.draw(g);
+                // Draw all squares
+                for(Shape shape : shapes){
+                    shape.updatePosition();
+                    shape.detectCollisions();
+                    shape.draw(g2d);
                 }
+
+                // Force the frame to repaint with modification
                 frame.repaint();
             }
         };
@@ -38,16 +55,6 @@ public class Main {
         long delay  = 0;
         long period = 10;
         timer.scheduleAtFixedRate(repeatedTask, delay, period);
-
-        /*
-        while(true){
-            Graphics2D g = frame.getGraphics();
-            for(Square s : squares){
-                s.draw(g);
-            }
-            //frame.repaint();
-        }
-         */
 
     }
 }

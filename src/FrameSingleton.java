@@ -4,8 +4,8 @@ import java.awt.*;
 public class FrameSingleton implements Displayer{
 
     private static FrameSingleton instance;
-    private final int WIDTH = 500;
-    private final int HEIGHT = 500;
+    private final int WIDTH = 400;
+    private final int HEIGHT = 400;
     private JFrame frame = new JFrame();
     private FramePanel panel = new FramePanel();
     private Image image;
@@ -13,10 +13,14 @@ public class FrameSingleton implements Displayer{
     // Private constructor
     private FrameSingleton(){
         frame.setTitle("Bouncers");
-        frame.setSize(WIDTH, HEIGHT);
+        frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setContentPane(this.panel);
+
+        panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        frame.setContentPane(panel);
+
+        frame.pack();
         frame.setVisible(true);
 
         this.image = panel.createImage(getWidth(),getHeight());
@@ -46,7 +50,7 @@ public class FrameSingleton implements Displayer{
 
     @Override
     public Graphics2D getGraphics() {
-        return (Graphics2D) panel.getGraphics();
+        return (Graphics2D) image.getGraphics();
     }
 
     @Override
