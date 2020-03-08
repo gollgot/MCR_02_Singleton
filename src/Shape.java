@@ -12,6 +12,10 @@ abstract class Shape {
     private final int MAX_SIZE = 15;
     private final int MIN_SIZE = 10;
 
+    /**
+     * Create a new Shape with random position int the frame, random direction and random size
+     * @param color The color of the Shape
+     */
     public Shape(Color color) {
         FrameSingleton frame = FrameSingleton.getInstance();
         Random random = new Random();
@@ -48,11 +52,17 @@ abstract class Shape {
         return color;
     }
 
+    /**
+     * Update the current position of the shape
+     */
     public void updatePosition(){
         x += xDirection;
         y += yDirection;
     }
 
+    /**
+     * Detect collision with the frame. If the Shape touch the frame border, it will bounce
+     */
     public void detectCollisions(){
         FrameSingleton frame = FrameSingleton.getInstance();
 
@@ -65,8 +75,16 @@ abstract class Shape {
         }
     }
 
+    /**
+     * Draw the Shape
+     * @param g2d
+     */
     abstract void draw(Graphics2D g2d);
 
+    /**
+     * Generate a random direction between [-2, 2] (0 exclude)
+     * @return A random direction for the Shape
+     */
     private int generateRandomDirection(){
         final int maxExcludeBorn = 3;
         final int minNegativeIncludeBorn = 2;

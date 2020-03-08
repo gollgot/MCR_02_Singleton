@@ -10,9 +10,11 @@ public class FrameSingleton implements Displayer{
     private FramePanel panel = new FramePanel();
     private Image image;
 
-    // Private constructor
+    /**
+     * Private constructor for our singleton.
+     * Frame settings
+     */
     private FrameSingleton(){
-        frame.setTitle("Bouncers");
         frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -26,6 +28,10 @@ public class FrameSingleton implements Displayer{
         this.image = panel.createImage(getWidth(),getHeight());
     }
 
+    /**
+     * Fetch a singleton of the FrameSingleton class
+     * @return A singleton
+     */
     public static FrameSingleton getInstance(){
         if(instance == null){
             instance = new FrameSingleton();

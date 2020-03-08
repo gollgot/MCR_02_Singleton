@@ -1,5 +1,3 @@
-import com.sun.security.jgss.GSSUtil;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,6 +18,7 @@ public class Main {
 
         // Fetch the frameSingleton
         FrameSingleton frame = FrameSingleton.getInstance();
+        frame.setTitle("Bouncers");
 
 
         // Create all shqpes (square and circle)
