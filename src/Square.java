@@ -2,8 +2,8 @@ import java.awt.*;
 
 public class Square extends Shape {
 
-    public Square(int x, int y, int width, int height, Color color) {
-        super(x, y, width, height, color);
+    public Square() {
+        super(Color.BLUE);
     }
 
     @Override

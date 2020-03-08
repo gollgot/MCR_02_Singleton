@@ -1,19 +1,31 @@
 import java.awt.*;
+import java.util.Random;
 
 abstract class Shape {
 
     private int x, y;
     private int width, height;
     private Color color;
-    private int xDirection = 1;
-    private int yDirection = 1;
+    private int xDirection;
+    private int yDirection;
 
-    public Shape(int x, int y, int width, int height, Color color) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    private final int MAX_SIZE = 15;
+    private final int MIN_SIZE = 10;
+
+    public Shape(Color color) {
+        FrameSingleton frame = FrameSingleton.getInstance();
+        Random random = new Random();
+
+        this.x = random.nextInt(frame.getWidth() - 2) + 1;
+        this.y = random.nextInt(frame.getHeight() - 2) + 1;
+
+        int randSize = random.nextInt((MAX_SIZE + 1) - MIN_SIZE) + MIN_SIZE;
+        this.width = randSize;
+        this.height = randSize;
         this.color = color;
+
+        xDirection = generateRandomDirection();
+        yDirection = generateRandomDirection();
     }
 
     public int getX() {
@@ -54,5 +66,19 @@ abstract class Shape {
     }
 
     abstract void draw(Graphics2D g2d);
+
+    private int generateRandomDirection(){
+        final int maxExcludeBorn = 3;
+        final int minNegativeIncludeBorn = 2;
+
+        Random random = new Random();
+        int rand = random.nextInt(maxExcludeBorn + minNegativeIncludeBorn) - minNegativeIncludeBorn;
+        // Exclude the 0 => otherwise the shape won't move
+        while(rand == 0){
+            rand = random.nextInt(maxExcludeBorn + minNegativeIncludeBorn) - minNegativeIncludeBorn;
+        }
+
+        return rand;
+    }
 
 }

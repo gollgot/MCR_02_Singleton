@@ -2,6 +2,7 @@ import com.sun.security.jgss.GSSUtil;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,25 +10,26 @@ public class Main {
 
     public static void main(String[] args) {
 
-        final int SQUARE_WIDTH = 10;
-        final int SQUARE_HEIGHT = 10;
+        final int SQUARE_NB = 40;
         final Color SQUARE_COLOR = Color.BLUE;
 
-        final int CIRCLE_WIDTH = 10;
-        final int CIRCLE_HEIGHT = 10;
+        final int CIRCLE_NB = 40;
         final Color CIRCLE_COLOR = Color.RED;
 
-        // Create all squares
-        ArrayList<Shape> shapes = new ArrayList<>();
-        shapes.add(new Square(10,30, SQUARE_WIDTH, SQUARE_HEIGHT, SQUARE_COLOR));
-        shapes.add(new Square(20,10, SQUARE_WIDTH, SQUARE_HEIGHT, SQUARE_COLOR));
-        shapes.add(new Square(40,20, SQUARE_WIDTH, SQUARE_HEIGHT, SQUARE_COLOR));
-        shapes.add(new Circle(100,200, CIRCLE_WIDTH, CIRCLE_HEIGHT, CIRCLE_COLOR));
-        shapes.add(new Circle(90,180, CIRCLE_WIDTH, CIRCLE_HEIGHT, CIRCLE_COLOR));
-        shapes.add(new Circle(80,160, CIRCLE_WIDTH, CIRCLE_HEIGHT, CIRCLE_COLOR));
+        Random random = new Random();
 
         // Fetch the frameSingleton
         FrameSingleton frame = FrameSingleton.getInstance();
+
+
+        // Create all shqpes (square and circle)
+        ArrayList<Shape> shapes = new ArrayList<>(SQUARE_NB + CIRCLE_NB);
+        for(int i = 0; i < SQUARE_NB; ++i){
+            shapes.add(new Square());
+        }
+        for(int i = 0; i < CIRCLE_NB; ++i){
+            shapes.add(new Circle());
+        }
 
 
         Timer timer = new Timer();
@@ -40,7 +42,7 @@ public class Main {
                 g2d.setColor(Color.WHITE);
                 g2d.fillRect(0, 0, FrameSingleton.getInstance().getWidth(), FrameSingleton.getInstance().getHeight());
 
-                // Draw all squares
+                // Draw all shapes
                 for(Shape shape : shapes){
                     shape.updatePosition();
                     shape.detectCollisions();
@@ -53,7 +55,7 @@ public class Main {
         };
 
         long delay  = 0;
-        long period = 10;
+        long period = 12;
         timer.scheduleAtFixedRate(repeatedTask, delay, period);
 
     }
