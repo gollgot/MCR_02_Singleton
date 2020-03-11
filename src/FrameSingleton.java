@@ -19,13 +19,12 @@ public class FrameSingleton implements Displayer{
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         frame.setContentPane(panel);
 
         frame.pack();
         frame.setVisible(true);
 
-        this.image = panel.createImage(getWidth(),getHeight());
+        this.image = panel.createImage(panel.getWidth(),panel.getHeight());
     }
 
     /**

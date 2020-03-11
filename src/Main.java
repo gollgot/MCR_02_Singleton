@@ -23,12 +23,13 @@ public class Main {
 
         // Create all shqpes (square and circle)
         ArrayList<Shape> shapes = new ArrayList<>(SQUARE_NB + CIRCLE_NB);
-        for(int i = 0; i < SQUARE_NB; ++i){
+        for (int i = 0; i < SQUARE_NB; ++i) {
             shapes.add(new Square());
         }
-        for(int i = 0; i < CIRCLE_NB; ++i){
+        for (int i = 0; i < CIRCLE_NB; ++i) {
             shapes.add(new Circle());
         }
+
 
 
         Timer timer = new Timer();
@@ -58,4 +59,5 @@ public class Main {
         timer.scheduleAtFixedRate(repeatedTask, delay, period);
 
     }
+
 }
