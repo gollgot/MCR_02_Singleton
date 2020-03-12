@@ -12,4 +12,18 @@ public class Circle extends Shape {
         g2d.fillOval(super.getX(), super.getY(), super.getWidth(), super.getHeight());
     }
 
+    @Override
+    public void draw() {
+
+    }
+
+    @Override
+    public Renderable getRenderer() {
+        return null;
+    }
+
+    @Override
+    public Shape getShape() {
+        return null;
+    }
 }

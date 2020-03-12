@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Random;
 
-abstract class Shape {
+abstract class Shape implements Bouncable{
 
     private int x, y;
     private int width, height;
@@ -55,7 +55,8 @@ abstract class Shape {
     /**
      * Update the current position of the shape
      */
-    public void updatePosition(){
+    @Override
+    public void move() {
         x += xDirection;
         y += yDirection;
     }

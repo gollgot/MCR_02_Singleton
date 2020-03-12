@@ -44,7 +44,7 @@ public class Main {
 
                 // Draw all shapes
                 for(Shape shape : shapes){
-                    shape.updatePosition();
+                    shape.move();
                     shape.detectCollisions();
                     shape.draw(g2d);
                 }

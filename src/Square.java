@@ -13,4 +13,18 @@ public class Square extends Shape {
     }
 
 
+    @Override
+    public void draw() {
+
+    }
+
+    @Override
+    public Renderable getRenderer() {
+        return null;
+    }
+
+    @Override
+    public Shape getShape() {
+        return null;
+    }
 }
