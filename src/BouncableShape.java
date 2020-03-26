@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Random;
 
-abstract class BouncableShape implements Bouncable{
+abstract class BouncableShape implements Bouncable {
 
     private int x, y;
     private int width, height;
@@ -52,6 +52,11 @@ abstract class BouncableShape implements Bouncable{
         return color;
     }
 
+    @Override
+    public Renderable getRenderer() {
+        return BouncableRenderer.getInstance();
+    }
+
     /**
      * Update the current position of the shape
      */
@@ -59,12 +64,14 @@ abstract class BouncableShape implements Bouncable{
     public void move() {
         x += xDirection;
         y += yDirection;
+
+        detectCollisions();
     }
 
     /**
      * Detect collision with the frame. If the BouncableShape touch the frame border, it will bounce
      */
-    public void detectCollisions(){
+    private void detectCollisions(){
         FrameSingleton frame = FrameSingleton.getInstance();
 
         if(x <= 0 || x >= (frame.getWidth() - width)){

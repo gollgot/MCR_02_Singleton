@@ -1,51 +1,52 @@
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
-public class Main {
+public class BounceApp {
 
-    public static void main(String[] args) {
+    private LinkedList<Bouncable> bouncers;
 
-        final int SQUARE_NB = 40;
-        final Color SQUARE_COLOR = Color.BLUE;
+    private final int SQUARE_NB = 40;
+    private final int CIRCLE_NB = 40;
 
-        final int CIRCLE_NB = 40;
-        final Color CIRCLE_COLOR = Color.RED;
+    private Random random;
+    private Timer timer;
 
-        Random random = new Random();
-
-        // Fetch the frameSingleton
-        FrameSingleton frame = FrameSingleton.getInstance();
-        frame.setTitle("Bouncers");
+    // Fetch the frameSingleton
+    private FrameSingleton frame;
 
 
-        // Create all shqpes (square and circle)
-        ArrayList<BouncableShape> bouncableShapes = new ArrayList<>(SQUARE_NB + CIRCLE_NB);
+
+    public BounceApp() {
+        this.frame = FrameSingleton.getInstance();
+        this.random = new Random();
+
+        this.frame.setTitle("Bouncers");
+
+        // Create all shape (square and circle)
+        bouncers = new LinkedList<>();
         for (int i = 0; i < SQUARE_NB; ++i) {
-            bouncableShapes.add(new Square());
+            bouncers.add(new Square());
         }
         for (int i = 0; i < CIRCLE_NB; ++i) {
-            bouncableShapes.add(new Circle());
+            bouncers.add(new Circle());
         }
 
+        timer = new Timer();
+    }
 
 
-        Timer timer = new Timer();
+    public void loop(){
         // Set up the repeated task that will update the subject states (seconds)
         TimerTask repeatedTask = new TimerTask() {
             public void run() {
-
                 // Refresh the image component to be able to display bouncableShapes without trace
                 Graphics2D g2d = FrameSingleton.getInstance().getGraphics();
                 g2d.setColor(Color.WHITE);
                 g2d.fillRect(0, 0, FrameSingleton.getInstance().getWidth(), FrameSingleton.getInstance().getHeight());
 
                 // Draw all bouncableShapes
-                for(BouncableShape shape : bouncableShapes){
+                for(Bouncable shape : bouncers){
                     shape.move();
-                    shape.detectCollisions();
                     shape.draw();
                 }
 
@@ -57,6 +58,11 @@ public class Main {
         long delay  = 0;
         long period = 12;
         timer.scheduleAtFixedRate(repeatedTask, delay, period);
+    }
+
+    public static void main(String[] args) {
+
+        new BounceApp().loop();
 
     }
 

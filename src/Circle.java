@@ -10,17 +10,12 @@ public class Circle extends BouncableShape {
     @Override
     public void draw() {
         Graphics2D g2d = FrameSingleton.getInstance().getGraphics();
-        g2d.setColor(super.getColor());
-        g2d.draw(getShape());
-    }
-
-    @Override
-    public Renderable getRenderer() {
-        return null;
+        super.getRenderer().display(g2d, this);
     }
 
     @Override
     public Shape getShape() {
         return new Ellipse2D.Float(super.getX(), super.getY(), super.getWidth(), super.getHeight());
     }
+
 }
