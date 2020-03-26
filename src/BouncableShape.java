@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Random;
 
-abstract class Shape implements Bouncable{
+abstract class BouncableShape implements Bouncable{
 
     private int x, y;
     private int width, height;
@@ -13,10 +13,10 @@ abstract class Shape implements Bouncable{
     private final int MIN_SIZE = 10;
 
     /**
-     * Create a new Shape with random position int the frame, random direction and random size
-     * @param color The color of the Shape
+     * Create a new BouncableShape with random position int the frame, random direction and random size
+     * @param color The color of the BouncableShape
      */
-    public Shape(Color color) {
+    public BouncableShape(Color color) {
         FrameSingleton frame = FrameSingleton.getInstance();
         Random random = new Random();
 
@@ -62,7 +62,7 @@ abstract class Shape implements Bouncable{
     }
 
     /**
-     * Detect collision with the frame. If the Shape touch the frame border, it will bounce
+     * Detect collision with the frame. If the BouncableShape touch the frame border, it will bounce
      */
     public void detectCollisions(){
         FrameSingleton frame = FrameSingleton.getInstance();
@@ -77,14 +77,8 @@ abstract class Shape implements Bouncable{
     }
 
     /**
-     * Draw the Shape
-     * @param g2d
-     */
-    abstract void draw(Graphics2D g2d);
-
-    /**
      * Generate a random direction between [-2, 2] (0 exclude)
-     * @return A random direction for the Shape
+     * @return A random direction for the BouncableShape
      */
     private int generateRandomDirection(){
         final int maxExcludeBorn = 3;

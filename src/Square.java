@@ -1,21 +1,17 @@
 import java.awt.*;
+import java.util.concurrent.RecursiveTask;
 
-public class Square extends Shape {
+public class Square extends BouncableShape {
 
     public Square() {
         super(Color.BLUE);
     }
 
     @Override
-    public void draw(Graphics2D g){
-        g.setColor(super.getColor());
-        g.fillRect(super.getX(), super.getY(), super.getWidth(), super.getHeight());
-    }
-
-
-    @Override
     public void draw() {
-
+        Graphics2D g2d = FrameSingleton.getInstance().getGraphics();
+        g2d.setColor(super.getColor());
+        g2d.draw(getShape());
     }
 
     @Override
@@ -25,6 +21,6 @@ public class Square extends Shape {
 
     @Override
     public Shape getShape() {
-        return null;
+        return new Rectangle(super.getX(), super.getY(), super.getWidth(), super.getHeight());
     }
 }

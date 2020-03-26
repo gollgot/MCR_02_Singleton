@@ -1,20 +1,17 @@
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
-public class Circle extends Shape {
+public class Circle extends BouncableShape {
 
     public Circle() {
         super(Color.RED);
     }
 
     @Override
-    void draw(Graphics2D g2d) {
-        g2d.setColor(super.getColor());
-        g2d.fillOval(super.getX(), super.getY(), super.getWidth(), super.getHeight());
-    }
-
-    @Override
     public void draw() {
-
+        Graphics2D g2d = FrameSingleton.getInstance().getGraphics();
+        g2d.setColor(super.getColor());
+        g2d.draw(getShape());
     }
 
     @Override
@@ -24,6 +21,6 @@ public class Circle extends Shape {
 
     @Override
     public Shape getShape() {
-        return null;
+        return new Ellipse2D.Float(super.getX(), super.getY(), super.getWidth(), super.getHeight());
     }
 }

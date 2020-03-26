@@ -22,12 +22,12 @@ public class Main {
 
 
         // Create all shqpes (square and circle)
-        ArrayList<Shape> shapes = new ArrayList<>(SQUARE_NB + CIRCLE_NB);
+        ArrayList<BouncableShape> bouncableShapes = new ArrayList<>(SQUARE_NB + CIRCLE_NB);
         for (int i = 0; i < SQUARE_NB; ++i) {
-            shapes.add(new Square());
+            bouncableShapes.add(new Square());
         }
         for (int i = 0; i < CIRCLE_NB; ++i) {
-            shapes.add(new Circle());
+            bouncableShapes.add(new Circle());
         }
 
 
@@ -37,16 +37,16 @@ public class Main {
         TimerTask repeatedTask = new TimerTask() {
             public void run() {
 
-                // Refresh the image component to be able to display shapes without trace
+                // Refresh the image component to be able to display bouncableShapes without trace
                 Graphics2D g2d = FrameSingleton.getInstance().getGraphics();
                 g2d.setColor(Color.WHITE);
                 g2d.fillRect(0, 0, FrameSingleton.getInstance().getWidth(), FrameSingleton.getInstance().getHeight());
 
-                // Draw all shapes
-                for(Shape shape : shapes){
+                // Draw all bouncableShapes
+                for(BouncableShape shape : bouncableShapes){
                     shape.move();
                     shape.detectCollisions();
-                    shape.draw(g2d);
+                    shape.draw();
                 }
 
                 // Force the frame to repaint with modification
