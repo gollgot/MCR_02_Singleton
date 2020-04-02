@@ -1,16 +1,13 @@
 import java.awt.*;
 
-public class Square extends Shape {
+public abstract class Square extends BouncableShape {
 
-    public Square() {
-        super(Color.BLUE);
+    public Square(Color color) {
+        super(color);
     }
 
-    @Override
-    public void draw(Graphics2D g){
-        g.setColor(super.getColor());
-        g.fillRect(super.getX(), super.getY(), super.getWidth(), super.getHeight());
+    public Shape getShape() {
+        return new Rectangle(super.getX(), super.getY(), super.getWidth(), super.getHeight());
     }
-
 
 }

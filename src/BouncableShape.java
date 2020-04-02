@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Random;
 
-abstract class Shape {
+abstract class BouncableShape implements Bouncable {
 
     private int x, y;
     private int width, height;
@@ -9,19 +9,19 @@ abstract class Shape {
     private int xDirection;
     private int yDirection;
 
-    private final int MAX_SIZE = 15;
+    private final int MAX_SIZE = 25;
     private final int MIN_SIZE = 10;
 
     /**
-     * Create a new Shape with random position int the frame, random direction and random size
-     * @param color The color of the Shape
+     * Create a new BouncableShape with random position int the frame, random direction and random size
+     * @param color The color of the BouncableShape
      */
-    public Shape(Color color) {
+    public BouncableShape(Color color) {
         FrameSingleton frame = FrameSingleton.getInstance();
         Random random = new Random();
 
-        this.x = random.nextInt(frame.getWidth() - 2) + 1;
-        this.y = random.nextInt(frame.getHeight() - 2) + 1;
+        this.x = random.nextInt(frame.getWidth() - 100) + 1;
+        this.y = random.nextInt(frame.getHeight() - 100) + 1;
 
         int randSize = random.nextInt((MAX_SIZE + 1) - MIN_SIZE) + MIN_SIZE;
         this.width = randSize;
@@ -55,35 +55,32 @@ abstract class Shape {
     /**
      * Update the current position of the shape
      */
-    public void updatePosition(){
+    @Override
+    public void move() {
         x += xDirection;
         y += yDirection;
+
+        detectCollisions();
     }
 
     /**
-     * Detect collision with the frame. If the Shape touch the frame border, it will bounce
+     * Detect collision with the frame. If the BouncableShape touch the frame border, it will bounce
      */
-    public void detectCollisions(){
+    private void detectCollisions(){
         FrameSingleton frame = FrameSingleton.getInstance();
 
-        if(x <= 0 || x >= (frame.getWidth() - width)){
+        if(x <= 0 || x >= (frame.getWidth() - width - 10)){
             xDirection *= -1;
         }
 
-        if(y <= 0 || y >= (frame.getHeight() - height)){
+        if(y <= 0 || y >= (frame.getHeight() - height - 30)){
             yDirection *= -1;
         }
     }
 
     /**
-     * Draw the Shape
-     * @param g2d
-     */
-    abstract void draw(Graphics2D g2d);
-
-    /**
      * Generate a random direction between [-2, 2] (0 exclude)
-     * @return A random direction for the Shape
+     * @return A random direction for the BouncableShape
      */
     private int generateRandomDirection(){
         final int maxExcludeBorn = 3;
@@ -97,6 +94,11 @@ abstract class Shape {
         }
 
         return rand;
+    }
+
+    public void draw() {
+        Graphics2D g2d = FrameSingleton.getInstance().getGraphics();
+        getRenderer().display(g2d, this);
     }
 
 }
