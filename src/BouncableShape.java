@@ -20,8 +20,8 @@ abstract class BouncableShape implements Bouncable {
         FrameSingleton frame = FrameSingleton.getInstance();
         Random random = new Random();
 
-        this.x = random.nextInt(frame.getWidth() - 2) + 1;
-        this.y = random.nextInt(frame.getHeight() - 2) + 1;
+        this.x = random.nextInt(frame.getWidth() - 100) + 1;
+        this.y = random.nextInt(frame.getHeight() - 100) + 1;
 
         int randSize = random.nextInt((MAX_SIZE + 1) - MIN_SIZE) + MIN_SIZE;
         this.width = randSize;
@@ -69,11 +69,11 @@ abstract class BouncableShape implements Bouncable {
     private void detectCollisions(){
         FrameSingleton frame = FrameSingleton.getInstance();
 
-        if(x <= 0 || x >= (frame.getWidth() - width)){
+        if(x <= 0 || x >= (frame.getWidth() - width - 10)){
             xDirection *= -1;
         }
 
-        if(y <= 0 || y >= (frame.getHeight() - height)){
+        if(y <= 0 || y >= (frame.getHeight() - height - 30)){
             yDirection *= -1;
         }
     }
