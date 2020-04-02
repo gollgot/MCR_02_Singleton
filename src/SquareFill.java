@@ -1,9 +1,15 @@
 import java.awt.*;
 
 public class SquareFill extends Square {
+
+    private final static Color color = Color.ORANGE;
+
+    public SquareFill() {
+        super(color);
+    }
+
     @Override
-    public Shape getShape() {
-        // TODO must be a filled shape
-        return new Rectangle(super.getX(), super.getY(), super.getWidth(), super.getHeight());
+    public Renderable getRenderer() {
+        return BouncableFillRenderer.getInstance();
     }
 }

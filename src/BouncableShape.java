@@ -9,7 +9,7 @@ abstract class BouncableShape implements Bouncable {
     private int xDirection;
     private int yDirection;
 
-    private final int MAX_SIZE = 15;
+    private final int MAX_SIZE = 25;
     private final int MIN_SIZE = 10;
 
     /**
@@ -50,11 +50,6 @@ abstract class BouncableShape implements Bouncable {
 
     public Color getColor() {
         return color;
-    }
-
-    @Override
-    public Renderable getRenderer() {
-        return BouncableRenderer.getInstance();
     }
 
     /**

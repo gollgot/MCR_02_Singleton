@@ -5,8 +5,8 @@ public class BounceApp {
 
     private LinkedList<Bouncable> bouncers;
 
-    private final int SQUARE_NB = 40;
-    private final int CIRCLE_NB = 40;
+    private final int SQUARE_NB = 20;
+    private final int CIRCLE_NB = 20;
 
     private Random random;
     private Timer timer;
@@ -29,9 +29,11 @@ public class BounceApp {
         bouncers = new LinkedList<>();
         for (int i = 0; i < SQUARE_NB; ++i) {
             bouncers.add(f1.createSquare());
+            bouncers.add(f1.createCircle());
         }
         for (int i = 0; i < CIRCLE_NB; ++i) {
             bouncers.add(f2.createCircle());
+            bouncers.add(f2.createSquare());
         }
 
         timer = new Timer();
