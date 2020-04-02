@@ -101,4 +101,9 @@ abstract class BouncableShape implements Bouncable {
         return rand;
     }
 
+    public void draw() {
+        Graphics2D g2d = FrameSingleton.getInstance().getGraphics();
+        getRenderer().display(g2d, this);
+    }
+
 }

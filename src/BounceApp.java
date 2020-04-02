@@ -17,6 +17,9 @@ public class BounceApp {
 
 
     public BounceApp() {
+        BouncableFactory f1 = new FactoryFill();
+        BouncableFactory f2 = new FactoryOutline();
+
         this.frame = FrameSingleton.getInstance();
         this.random = new Random();
 
@@ -25,10 +28,10 @@ public class BounceApp {
         // Create all shape (square and circle)
         bouncers = new LinkedList<>();
         for (int i = 0; i < SQUARE_NB; ++i) {
-            bouncers.add(new Square());
+            bouncers.add(f1.createSquare());
         }
         for (int i = 0; i < CIRCLE_NB; ++i) {
-            bouncers.add(new Circle());
+            bouncers.add(f2.createCircle());
         }
 
         timer = new Timer();
