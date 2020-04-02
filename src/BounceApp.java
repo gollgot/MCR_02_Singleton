@@ -28,12 +28,12 @@ public class BounceApp {
         // Create all shape (square and circle)
         bouncers = new LinkedList<>();
         for (int i = 0; i < SQUARE_NB; ++i) {
-            bouncers.add(f1.createSquare());
-            bouncers.add(f1.createCircle());
+            bouncers.add(FactoryFill.getInstance().createSquare());
+            bouncers.add(FactoryFill.getInstance().createCircle());
         }
         for (int i = 0; i < CIRCLE_NB; ++i) {
-            bouncers.add(f2.createCircle());
-            bouncers.add(f2.createSquare());
+            bouncers.add(FactoryOutline.getInstance().createSquare());
+            bouncers.add(FactoryOutline.getInstance().createCircle());
         }
 
         timer = new Timer();
