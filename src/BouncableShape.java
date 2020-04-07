@@ -69,13 +69,20 @@ abstract class BouncableShape implements Bouncable {
     private void detectCollisions(){
         FrameSingleton frame = FrameSingleton.getInstance();
 
-        if(x <= 0 || x >= (frame.getWidth() - width - 10)){
+        if(x <= 0 ){
             xDirection *= -1;
+        }else if( x > (frame.getWidth() - getWidth())){
+            // This way the lost Shape will comeback inside the windows size
+            xDirection = Math.abs(xDirection) * -1;
         }
 
-        if(y <= 0 || y >= (frame.getHeight() - height - 30)){
+        if(y <= 0 ){ // -30 because of the app name bar
             yDirection *= -1;
+        }else if(y > (frame.getHeight() - getHeight() - 30)){
+            // This way the lost Shape will comeback inside the windows size
+            yDirection = Math.abs(yDirection) * -1;
         }
+
     }
 
     /**

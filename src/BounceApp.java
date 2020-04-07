@@ -8,6 +8,10 @@ import java.util.Timer;
 public class BounceApp implements KeyListener {
 
     private LinkedList<Bouncable> bouncers;
+
+    private final int SQUARE_NB = 20; // value for each one (fill and outline)
+    private final int CIRCLE_NB = 20; // value for each one (fill and outline)
+
     private Timer timer;
     private FrameSingleton frame;
 
@@ -15,29 +19,37 @@ public class BounceApp implements KeyListener {
 
     public BounceApp() {
         this.frame = FrameSingleton.getInstance();
-        timer = new Timer();
-        bouncers = new LinkedList<>();
+
         this.frame.setTitle("Bouncers");
 
-        this.frame.getFrame().addKeyListener(this);
+        // Create all shape (square and circle)
+        bouncers = new LinkedList<>();
+        for (int i = 0; i < SQUARE_NB ; ++i) {
+            bouncers.add(FactoryFill.getInstance().createSquare());
+            bouncers.add(FactoryFill.getInstance().createCircle());
+        }
+        for (int i = 0; i < CIRCLE_NB; ++i) {
+            bouncers.add(FactoryOutline.getInstance().createSquare());
+            bouncers.add(FactoryOutline.getInstance().createCircle());
+        }
+
+        timer = new Timer();
     }
 
     public void loop(){
         // Set up the repeated task that will update the subject states (seconds)
         TimerTask repeatedTask = new TimerTask() {
             public void run() {
-                // Refresh the image component to be able to display bouncableShapes without trace
+                // Draw a white rectangle that fit the window to be able to display bouncableShapes without trace
                 Graphics2D g2d = FrameSingleton.getInstance().getGraphics();
                 g2d.setColor(Color.WHITE);
                 g2d.fillRect(0, 0, FrameSingleton.getInstance().getWidth(), FrameSingleton.getInstance().getHeight());
 
-                // Draw all bouncableShapes
-                if(!bouncers.isEmpty())
-                    // We do not use iterator loop to avoid concurrent modification conflicts
-                    for(int i = 0; i < bouncers.size(); ++i) {
-                        bouncers.get(i).move();
-                        bouncers.get(i).draw();
-                    }
+                // Draw all bouncableShapes and move them
+                for(Bouncable shape : bouncers){
+                    shape.move();
+                    shape.draw();
+                }
 
                 // Force the frame to repaint with modification
                 frame.repaint();
