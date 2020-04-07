@@ -13,7 +13,7 @@ abstract class BouncableShape implements Bouncable {
     private final int MIN_SIZE = 10;
 
     /**
-     * Create a new BouncableShape with random position int the frame, random direction and random size
+     * Create a new BouncableShape with random position in the frame, random direction and random size
      * @param color The color of the BouncableShape
      */
     public BouncableShape(Color color) {
@@ -64,7 +64,8 @@ abstract class BouncableShape implements Bouncable {
     }
 
     /**
-     * Detect collision with the frame. If the BouncableShape touch the frame border, it will bounce
+     * Detect collision with the frame. If the BouncableShape go out the frame border,
+     * it will come back inside the current frame size, This way this is responsive.
      */
     private void detectCollisions(){
         FrameSingleton frame = FrameSingleton.getInstance();
@@ -103,8 +104,12 @@ abstract class BouncableShape implements Bouncable {
         return rand;
     }
 
+    /**
+     * Draw the Bouncer
+     */
     public void draw() {
         Graphics2D g2d = FrameSingleton.getInstance().getGraphics();
+        // Get the good renderer with dynamic liaison.
         getRenderer().display(g2d, this);
     }
 
