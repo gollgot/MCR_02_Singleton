@@ -5,8 +5,8 @@ public class BounceApp {
 
     private LinkedList<Bouncable> bouncers;
 
-    private final int SQUARE_NB = 20;
-    private final int CIRCLE_NB = 20;
+    private final int SQUARE_NB = 20; // value for each one (fill and outline)
+    private final int CIRCLE_NB = 20; // value for each one (fill and outline)
 
     private Timer timer;
 
