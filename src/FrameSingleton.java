@@ -24,7 +24,11 @@ public class FrameSingleton implements Displayer{
         frame.pack();
         frame.setVisible(true);
 
-        this.image = panel.createImage(panel.getWidth(),panel.getHeight());
+        // Pre load the image to fit the screen size, this way it will work well with
+        // Window resize
+        int screenWidth = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+        int screenHeight = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+        this.image = panel.createImage(screenWidth, screenHeight);
     }
 
     /**
@@ -45,12 +49,12 @@ public class FrameSingleton implements Displayer{
 
     @Override
     public int getWidth() {
-        return WIDTH;
+        return frame.getWidth();
     }
 
     @Override
     public int getHeight() {
-        return HEIGHT;
+        return frame.getHeight();
     }
 
     @Override
