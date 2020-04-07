@@ -1,12 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class FrameSingleton implements Displayer{
+public class FrameSingleton implements Displayer {
 
     private static FrameSingleton instance;
     private final int WIDTH = 800;
     private final int HEIGHT = 800;
     private JFrame frame = new JFrame();
+
     private FramePanel panel = new FramePanel();
     private Image image;
 
@@ -41,6 +42,10 @@ public class FrameSingleton implements Displayer{
 
     public Image getImage() {
         return image;
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 
     @Override
