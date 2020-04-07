@@ -8,10 +8,6 @@ import java.util.Timer;
 public class BounceApp implements KeyListener {
 
     private LinkedList<Bouncable> bouncers;
-
-    private final int SQUARE_NB = 20; // value for each one (fill and outline)
-    private final int CIRCLE_NB = 20; // value for each one (fill and outline)
-
     private Timer timer;
     private FrameSingleton frame;
 
@@ -19,21 +15,11 @@ public class BounceApp implements KeyListener {
 
     public BounceApp() {
         this.frame = FrameSingleton.getInstance();
-
+        timer = new Timer();
+        bouncers = new LinkedList<>();
         this.frame.setTitle("Bouncers");
 
-        // Create all shape (square and circle)
-        bouncers = new LinkedList<>();
-        for (int i = 0; i < SQUARE_NB ; ++i) {
-            bouncers.add(FactoryFill.getInstance().createSquare());
-            bouncers.add(FactoryFill.getInstance().createCircle());
-        }
-        for (int i = 0; i < CIRCLE_NB; ++i) {
-            bouncers.add(FactoryOutline.getInstance().createSquare());
-            bouncers.add(FactoryOutline.getInstance().createCircle());
-        }
-
-        timer = new Timer();
+        this.frame.getFrame().addKeyListener(this);
     }
 
     public void loop(){
@@ -45,10 +31,13 @@ public class BounceApp implements KeyListener {
                 g2d.setColor(Color.WHITE);
                 g2d.fillRect(0, 0, FrameSingleton.getInstance().getWidth(), FrameSingleton.getInstance().getHeight());
 
-                // Draw all bouncableShapes and move them
-                for(Bouncable shape : bouncers){
-                    shape.move();
-                    shape.draw();
+                // Draw all bouncableShapes
+                // We do not use iterator loop to avoid concurrent modification conflicts
+                for (int i = 0; i < bouncers.size(); ++i) {
+                    if(bouncers.get(i) != null) {
+                        bouncers.get(i).move();
+                        bouncers.get(i).draw();
+                    }
                 }
 
                 // Force the frame to repaint with modification
