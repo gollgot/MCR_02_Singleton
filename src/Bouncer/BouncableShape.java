@@ -1,8 +1,12 @@
 /*
-  File: BouncableShape.java
+  File: Bouncer.BouncableShape.java
   Authors: Robin Demarta & Loïc Dessaules
   Date: 08.04.2020
  */
+
+package Bouncer;
+
+import Bouncer.Displayer.FrameSingleton;
 
 import java.awt.*;
 import java.util.Random;
@@ -19,8 +23,8 @@ abstract class BouncableShape implements Bouncable {
     private final int MIN_SIZE = 10;
 
     /**
-     * Create a new BouncableShape with random position in the frame, random direction and random size
-     * @param color The color of the BouncableShape
+     * Create a new Bouncer.BouncableShape with random position in the frame, random direction and random size
+     * @param color The color of the Bouncer.BouncableShape
      */
     public BouncableShape(Color color) {
         FrameSingleton frame = FrameSingleton.getInstance();
@@ -70,7 +74,7 @@ abstract class BouncableShape implements Bouncable {
     }
 
     /**
-     * Detect collision with the frame. If the BouncableShape go out the frame border,
+     * Detect collision with the frame. If the Bouncer.BouncableShape go out the frame border,
      * it will come back inside the current frame size, This way this is responsive.
      */
     private void detectCollisions(){
@@ -94,7 +98,7 @@ abstract class BouncableShape implements Bouncable {
 
     /**
      * Generate a random direction between [-2, 2] (0 exclude)
-     * @return A random direction for the BouncableShape
+     * @return A random direction for the Bouncer.BouncableShape
      */
     private int generateRandomDirection(){
         final int maxExcludeBorn = 3;
@@ -115,7 +119,7 @@ abstract class BouncableShape implements Bouncable {
      */
     public void draw() {
         Graphics2D g2d = FrameSingleton.getInstance().getGraphics();
-        // Get the good renderer with dynamic liaison.
+        // Get the good Renderer with dynamic liaison.
         getRenderer().display(g2d, this);
     }
 

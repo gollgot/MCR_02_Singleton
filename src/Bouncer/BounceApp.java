@@ -1,8 +1,15 @@
 /*
- * File: BounceApp.java
+ * File: Bouncer.BounceApp.java
  * Authors: Robin Demarta & Loïc Dessaules
  * Date: 08.04.2020
  */
+
+package Bouncer;
+
+import Bouncer.Displayer.FrameSingleton;
+import Bouncer.Factory.BouncableFactory;
+import Bouncer.Factory.FactoryFill;
+import Bouncer.Factory.FactoryOutline;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -29,7 +36,7 @@ public class BounceApp implements KeyListener {
         this.bouncers = new LinkedList<>();
         this.frame.setTitle("Bouncers");
 
-        // Dont forget to add the keyLiestener into our FrameSingleton
+        // Dont forget to add the keyLiestener into our Bouncer.Displayer.FrameSingleton
         this.frame.getFrame().addKeyListener(this);
     }
 

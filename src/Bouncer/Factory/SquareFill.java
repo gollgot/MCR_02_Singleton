@@ -1,8 +1,14 @@
 /*
- * File: SquareFill.java
+ * File: Bouncer.Factory.SquareFill.java
  * Authors: Robin Demarta & Loïc Dessaules
  * Date: 08.04.2020
  */
+
+package Bouncer.Factory;
+
+import Bouncer.Renderer.BouncableFillRenderer;
+import Bouncer.Renderer.Renderable;
+import Bouncer.Square;
 
 import java.awt.*;
 
@@ -18,7 +24,7 @@ public class SquareFill extends Square {
     }
 
     /**
-     * Return the good renderer to use to draw a fill square
+     * Return the good Renderer to use to draw a fill square
      * @return The Renderer instance for a fill square
      */
     @Override

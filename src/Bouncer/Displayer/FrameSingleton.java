@@ -1,8 +1,10 @@
 /*
- * File: FrameSingleton.java
+ * File: Bouncer.Displayer.FrameSingleton.java
  * Authors: Robin Demarta & Loïc Dessaules
  * Date: 08.04.2020
  */
+
+package Bouncer.Displayer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +41,7 @@ public class FrameSingleton implements Displayer {
     }
 
     /**
-     * Fetch a singleton of the FrameSingleton class
+     * Fetch a singleton of the Bouncer.Displayer.FrameSingleton class
      * @return A singleton
      */
     public static FrameSingleton getInstance(){

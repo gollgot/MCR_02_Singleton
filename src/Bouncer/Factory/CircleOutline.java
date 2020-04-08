@@ -1,11 +1,16 @@
 /*
- * File: CircleOutline.java
+ * File: Bouncer.Factory.CircleOutline.java
  * Authors: Robin Demarta & Loïc Dessaules
  * Date: 08.04.2020
  */
 
+package Bouncer.Factory;
+
+import Bouncer.Renderer.BouncableOutlineRenderer;
+import Bouncer.Circle;
+import Bouncer.Renderer.Renderable;
+
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 
 public class CircleOutline extends Circle {
 
@@ -19,7 +24,7 @@ public class CircleOutline extends Circle {
     }
 
     /**
-     * Return the good renderer to use to draw an outline circle
+     * Return the good Renderer to use to draw an outline circle
      * @return The Renderer instance for an outline circle
      */
     @Override

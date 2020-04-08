@@ -1,8 +1,10 @@
 /*
- * File: FramePanel.java
+ * File: Bouncer.Displayer.FramePanel.java
  * Authors: Robin Demarta & Loïc Dessaules
  * Date: 08.04.2020
  */
+
+package Bouncer.Displayer;
 
 import javax.swing.*;
 import java.awt.*;

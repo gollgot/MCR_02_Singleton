@@ -1,11 +1,16 @@
 /*
- * File: CircleFill.java
+ * File: Bouncer.Factory.CircleFill.java
  * Authors: Robin Demarta & Loïc Dessaules
  * Date: 08.04.2020
  */
 
+package Bouncer.Factory;
+
+import Bouncer.Renderer.BouncableFillRenderer;
+import Bouncer.Circle;
+import Bouncer.Renderer.Renderable;
+
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 
 public class CircleFill extends Circle {
 
@@ -19,7 +24,7 @@ public class CircleFill extends Circle {
     }
 
     /**
-     * Return the good renderer to use to draw a fill circle
+     * Return the good Renderer to use to draw a fill circle
      * @return The Renderer instance for a fill circle
      */
     @Override

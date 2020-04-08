@@ -1,12 +1,17 @@
 /*
- * File: FactoryFill.java
+ * File: Bouncer.Factory.FactoryFill.java
  * Authors: Robin Demarta & Loïc Dessaules
  * Date: 08.04.2020
  */
 
+package Bouncer.Factory;
+
+import Bouncer.Circle;
+import Bouncer.Square;
+
 /**
- * Factory Singleton class to represent a FactoryFill that can be use to create "Fill" object
- * (Square or Circle)
+ * Factory Singleton class to represent a Bouncer.Factory.FactoryFill that can be use to create "Fill" object
+ * (Bouncer.Square or Bouncer.Circle)
  */
 public class FactoryFill extends BouncableFactory {
 
@@ -18,7 +23,7 @@ public class FactoryFill extends BouncableFactory {
     private FactoryFill(){}
 
     /**
-     * Return a unique instance of FactoryFill
+     * Return a unique instance of Bouncer.Factory.FactoryFill
      * @return A new instance if this is the first time, the current one otherwise
      */
     public static FactoryFill getInstance(){
@@ -30,8 +35,8 @@ public class FactoryFill extends BouncableFactory {
     }
 
     /**
-     * Create a SquareFill
-     * @return A new SquareFill
+     * Create a Bouncer.Factory.SquareFill
+     * @return A new Bouncer.Factory.SquareFill
      */
     @Override
     public Square createSquare() {
@@ -39,8 +44,8 @@ public class FactoryFill extends BouncableFactory {
     }
 
     /**
-     * Create a CircleFill
-     * @return A new CircleFill
+     * Create a Bouncer.Factory.CircleFill
+     * @return A new Bouncer.Factory.CircleFill
      */
     @Override
     public Circle createCircle() {

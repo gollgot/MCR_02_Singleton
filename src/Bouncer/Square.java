@@ -1,8 +1,10 @@
 /*
- * File: Square.java
+ * File: Bouncer.Square.java
  * Authors: Robin Demarta & Loïc Dessaules
  * Date: 08.04.2020
  */
+
+package Bouncer;
 
 import java.awt.*;
 
