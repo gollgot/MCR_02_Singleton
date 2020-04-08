@@ -1,3 +1,9 @@
+/*
+  File: BouncableShape.java
+  Authors: Robin Demarta & Loïc Dessaules
+  Date: 08.04.2020
+ */
+
 import java.awt.*;
 import java.util.Random;
 

@@ -1,3 +1,9 @@
+/*
+ * File: FramePanel.java
+ * Authors: Robin Demarta & Loïc Dessaules
+ * Date: 08.04.2020
+ */
+
 import javax.swing.*;
 import java.awt.*;
 

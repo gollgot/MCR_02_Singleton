@@ -1,3 +1,9 @@
+/*
+ * File: FactoryOutline.java
+ * Authors: Robin Demarta & Loïc Dessaules
+ * Date: 08.04.2020
+ */
+
 /**
  * Factory Singleton class to represent a FactorOutline that can be use to create "Outline" object
  * (Square or Circle)

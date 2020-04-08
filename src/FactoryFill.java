@@ -1,3 +1,9 @@
+/*
+ * File: FactoryFill.java
+ * Authors: Robin Demarta & Loïc Dessaules
+ * Date: 08.04.2020
+ */
+
 /**
  * Factory Singleton class to represent a FactoryFill that can be use to create "Fill" object
  * (Square or Circle)
