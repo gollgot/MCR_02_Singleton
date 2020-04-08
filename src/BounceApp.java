@@ -12,16 +12,25 @@ public class BounceApp implements KeyListener {
     private FrameSingleton frame;
 
     private final int SHAPE_NB = 10;
+    private final int FRAME_RATE = 12;
 
+    /**
+     * Empty constructor
+     */
     public BounceApp() {
         this.frame = FrameSingleton.getInstance();
-        timer = new Timer();
-        bouncers = new LinkedList<>();
+        this.timer = new Timer();
+        this.bouncers = new LinkedList<>();
         this.frame.setTitle("Bouncers");
 
+        // Dont forget to add the keyLiestener into our FrameSingleton
         this.frame.getFrame().addKeyListener(this);
     }
 
+    /**
+     * Main loop of the application that have to be called one time to run the whole
+     * bouncers process
+     */
     public void loop(){
         // Set up the repeated task that will update the subject states (seconds)
         TimerTask repeatedTask = new TimerTask() {
@@ -46,14 +55,14 @@ public class BounceApp implements KeyListener {
         };
 
         long delay  = 0;
-        long period = 12;
+        long period = FRAME_RATE;
         timer.scheduleAtFixedRate(repeatedTask, delay, period);
     }
 
     /**
      * Operates action depending on user input (key pressing)
      * Either creates fill/outline shapes, erase all shapes or quit application
-     * @param e
+     * @param e The KeyEvent
      */
     @Override
     public void keyPressed(KeyEvent e) {
